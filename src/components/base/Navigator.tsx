@@ -20,9 +20,9 @@ const Navigator = () => {
   };
 
   return (
-    <div style={{ backgroundColor: '#333' }}>
+    <div>
       <button>114514</button>
-      <Menu mode="inline" theme="dark" openKeys={openKeys} onOpenChange={onOpenChange} style={{ backgroundColor: '#333' }}>
+      <Menu mode="inline" openKeys={openKeys} onOpenChange={onOpenChange}>
         <SubMenu key="sub1" icon={<MailOutlined />} title="Navigation One">
           <Menu.Item key="1">Option 1</Menu.Item>
           <Menu.Item key="2">Option 2</Menu.Item>

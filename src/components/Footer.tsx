@@ -1,5 +1,4 @@
 import React from 'react'
-//import { Link, Grid } from '@material-ui/core'
 
 interface Props {
 
@@ -38,17 +37,16 @@ export const FooterComponent: React.FC<Props> = () => {
         }
     ]
     return (
-        <div style={{ display: 'flex', backgroundColor: '#222' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto', backgroundColor: '#333' }}>
             {msg.map(value => {
                 return (
-                    <div style={{ marginLeft: '50px', marginRight: '50px' }}>
+                    <div style={{ marginLeft: '10px', marginRight: '10px' }}>
                         <h4 style={{ color: '#fff' }}>{value.title}</h4>
                         <ul>
                             {value.linklist.map(linkvalue => {
                                 return (
                                     <li style={{ color: '#fff', margin: '5px' }}>
-                                        {/* <Link href={linkvalue.link} color="inherit">{linkvalue.linktitle}</Link> */}
-                                        <a href={linkvalue.link} style={{ color: '#fff', }}>{linkvalue.linktitle}</a>
+                                        <a href={linkvalue.link} style={{ color: '#fff' }}>{linkvalue.linktitle}</a>
                                     </li>)
                             })}
                         </ul>
