@@ -10,7 +10,7 @@ export declare interface User {
     username: string,
     gender: Gender,
     email: string,
-    avatarID: number
+    avatarID?: number
 }
 
 export const UsernameField: Field = {

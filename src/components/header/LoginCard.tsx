@@ -1,14 +1,16 @@
 import React from 'react'
 import { Card, Form, Input, Button, Checkbox, Tag } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../context/ModalContext';
+import { login } from '../../api/login'
 
 interface Props {
 }
 
 export const LoginCard: React.FC<Props> = () => {
     const onFinish = (values: any) => {
-        console.log('Received values of form: ', values);
+        console.log({ ...values });
+        login(values).then(console.log).catch(console.log);
     };
 
     const modalContext = React.useContext(ModalContext)

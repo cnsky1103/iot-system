@@ -21,7 +21,7 @@ export const FooterComponent: React.FC<Props> = () => {
                 link: "https://github.com/cnsky1103/iot-system"
             }, {
                 linktitle: "后端",
-                link: "https://www.baidu.com"
+                link: "https://github.com/cnsky1103/iot-system-server"
             }]
 
         },
@@ -30,6 +30,9 @@ export const FooterComponent: React.FC<Props> = () => {
             linklist: [{
                 linktitle: "React",
                 link: "https://reactjs.org"
+            }, {
+                linktitle: "Node.js",
+                link: "https://nodejs.org"
             }, {
                 linktitle: "Express",
                 link: "http://expressjs.com"
