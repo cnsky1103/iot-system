@@ -1,6 +1,7 @@
 import React from 'react'
 import { ModalContext } from '../../context/ModalContext'
 import { Card, Form, Input, Button } from 'antd'
+import { register } from '../../api/account'
 
 interface Props {
 }
@@ -10,11 +11,16 @@ export const RegisterCard: React.FC<Props> = () => {
 
     const [form] = Form.useForm()
 
+    const onFinish = (values) => {
+        console.log(values);
+        register(values).then(console.log).catch(console.log)
+    }
+
     return (
         <Card title={null} style={{ width: "300px" }} bordered={false}>
             <Form
                 form={form}
-                onFinish={value => { console.log(value); modalContext.setRegisterVisible(false) }}
+                onFinish={values => { onFinish(values); modalContext.setRegisterVisible(false) }}
                 name="register">
                 <Form.Item
                     name="email"
@@ -55,7 +61,7 @@ export const RegisterCard: React.FC<Props> = () => {
                 </Form.Item>
 
                 <Form.Item
-                    name="nickname"
+                    name="username"
                     label="昵称"
                     rules={[{ required: true, message: '请输入昵称！', whitespace: true }]}
                 >
