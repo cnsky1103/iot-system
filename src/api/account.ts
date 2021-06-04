@@ -7,7 +7,10 @@ async function login({ username, password, remember }): Promise<any> {
         password: md5(password)
     })
     console.log(loginRes.data)
-    return Promise.resolve('')
+    if (loginRes.data)
+        return Promise.resolve(loginRes.data)
+    else
+        return Promise.resolve({})
 }
 
 async function register({ username, password, email }): Promise<any> {
@@ -21,14 +24,18 @@ async function register({ username, password, email }): Promise<any> {
     return Promise.resolve('')
 }
 
-async function resetPassword({ oldPassword, newPassword }): Promise<any> {
+async function resetPassword({ username, oldPassword, newPassword }): Promise<any> {
     const resetRes = await request.post('/user/reset', {
+        username,
         oldPassword: md5(oldPassword),
         newPassword: md5(newPassword)
     })
 
-    console.log(resetRes.data)
-    return Promise.resolve('')
+    console.log(resetRes)
+    if (resetRes.data)
+        return Promise.resolve({ code: 1 })
+    else
+        return Promise.resolve({ code: 0 })
 }
 
 export {

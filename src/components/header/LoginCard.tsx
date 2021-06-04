@@ -3,14 +3,27 @@ import { Card, Form, Input, Button, Checkbox, Tag } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ModalContext } from '../../context/ModalContext';
 import { login } from '../../api/account'
+import { UserContext } from '../../context/UserContext';
 
 interface Props {
 }
 
 export const LoginCard: React.FC<Props> = () => {
+    const userContext = React.useContext(UserContext)
+
     const onFinish = (values: any) => {
         console.log({ ...values });
-        login(values).then(console.log).catch(console.log);
+        login(values)
+            .then(res => {
+                console.log(res[0]);
+                if (res[0]) {
+                    userContext.setUser({ username: res[0].username });
+                    modalContext.setLoginVisible(false)
+                }
+                else
+                    alert("用户名或密码错误！！")
+            })
+            .catch(console.log);
     };
 
     const modalContext = React.useContext(ModalContext)
@@ -21,7 +34,7 @@ export const LoginCard: React.FC<Props> = () => {
                 name="normal_login"
                 className="login-form"
                 initialValues={{ remember: true }}
-                onFinish={(values) => { onFinish(values); modalContext.setLoginVisible(false) }}
+                onFinish={(values) => { onFinish(values); }}
             >
                 <Form.Item
                     name="username"

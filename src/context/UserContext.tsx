@@ -11,10 +11,8 @@ interface UserInfo {
 }
 
 export const defaultValue = {
-    user: {
-
-    },
-    setUser: {}
+    user: { username: undefined },
+    setUser: (o: any) => { }
 }
 
 export const UserContext = React.createContext(defaultValue)

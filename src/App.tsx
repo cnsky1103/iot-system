@@ -9,7 +9,10 @@ import { UserContext } from './context/UserContext'
 const { Header, Footer, Sider, Content } = Layout;
 
 const App: React.FC = () => {
-    const [user, setUser] = useState({})
+    let defaultUser = {
+        username: undefined,
+    }
+    const [user, setUser] = useState<any>(defaultUser)
     //const value = useMemo(() => ({ user: null, setUser }), [user, setUser])
 
     return (
