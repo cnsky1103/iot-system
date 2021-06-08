@@ -13,7 +13,7 @@ export const RegisterCard: React.FC<Props> = () => {
 
     const onFinish = (values) => {
         console.log(values);
-        register(values).then(console.log).catch(console.log)
+        register(values).then(() => alert("注册成功！")).catch(alert)
     }
 
     return (

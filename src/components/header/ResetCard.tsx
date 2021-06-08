@@ -35,8 +35,9 @@ export const ResetCard: React.FC<Props> = () => {
                 <Form.Item
                     name="username"
                     rules={[{ required: true, message: '请输入账号！' }]}
+                    label="用户名"
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} />
                 </Form.Item>
 
                 <Form.Item

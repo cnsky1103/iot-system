@@ -5,6 +5,9 @@ import { FooterComponent } from './components/Footer'
 import Navigator from './components/base/Navigator'
 import { Layout } from 'antd';
 import { UserContext } from './context/UserContext'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Settings } from './components/base/Settings'
+import { AllDevice } from './components/device/AllDevice'
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -18,13 +21,22 @@ const App: React.FC = () => {
     return (
         <UserContext.Provider value={{ user, setUser }} >
             <Layout >
-                <Sider theme="light" style={{ height: '800px' }}><Navigator /></Sider>
-                <Layout>
-                    <Header style={{ padding: '0', backgroundColor: 'white' }} ><HeaderComponent /></Header>
-                    <Content>
-                    </Content>
-                    <Footer style={{ padding: '0' }}><FooterComponent /></Footer>
-                </Layout>
+                <Router>
+                    <Sider theme="light" style={{ height: '800px' }}><Navigator /></Sider>
+                    <Layout>
+                        <Header style={{ padding: '0', backgroundColor: 'white' }} ><HeaderComponent /></Header>
+                        <Content>
+
+                            <Switch>
+                                <Route path="/alldevice" children={AllDevice}/>
+                                {/*<Route path="/mydevice" children={}/> */}
+                                <Route path="/settings" children={Settings} />
+                                <Route exact path="/" children={AllDevice}/>
+                            </Switch>
+                        </Content>
+                        <Footer style={{ padding: '0' }}><FooterComponent /></Footer>
+                    </Layout>
+                </Router>
             </Layout>
         </UserContext.Provider>
     )

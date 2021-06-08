@@ -23,7 +23,7 @@ export const LoginCard: React.FC<Props> = () => {
                 else
                     alert("用户名或密码错误！！")
             })
-            .catch(console.log);
+            .catch(alert);
     };
 
     const modalContext = React.useContext(ModalContext)
@@ -40,7 +40,7 @@ export const LoginCard: React.FC<Props> = () => {
                     name="username"
                     rules={[{ required: true, message: '请输入账号！' }]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="用户名" />
                 </Form.Item>
                 <Form.Item
                     name="password"
@@ -49,7 +49,7 @@ export const LoginCard: React.FC<Props> = () => {
                     <Input.Password
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Password"
+                        placeholder="密码"
                     />
                 </Form.Item>
                 <Form.Item>

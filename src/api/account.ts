@@ -2,15 +2,15 @@ import request from './axios'
 import { md5 } from './md5'
 
 async function login({ username, password, remember }): Promise<any> {
-    const loginRes = await request.post('/user', {
+    const loginRes = await request.post('/user/login', {
         username: username,
         password: md5(password)
     })
-    console.log(loginRes.data)
-    if (loginRes.data)
-        return Promise.resolve(loginRes.data)
+    console.log(loginRes.data.code)
+    if (loginRes.data.code === 0)
+        return Promise.resolve(loginRes.data.data)
     else
-        return Promise.resolve({})
+        return Promise.reject(loginRes.data.error)
 }
 
 async function register({ username, password, email }): Promise<any> {
@@ -21,7 +21,10 @@ async function register({ username, password, email }): Promise<any> {
     })
 
     console.log(regRes.data)
-    return Promise.resolve('')
+    if (regRes.data.code === 0)
+        return Promise.resolve(regRes.data.data)
+    else
+        return Promise.reject(regRes.data.error)
 }
 
 async function resetPassword({ username, oldPassword, newPassword }): Promise<any> {

@@ -43,12 +43,12 @@ export const FooterComponent: React.FC<Props> = () => {
         <div style={{ display: 'grid', gridTemplateColumns: 'auto auto auto', backgroundColor: '#333' }}>
             {msg.map(value => {
                 return (
-                    <div style={{ marginLeft: '10px', marginRight: '10px' }}>
+                    <div key={value.title} style={{ marginLeft: '10px', marginRight: '10px' }}>
                         <h4 style={{ color: '#fff' }}>{value.title}</h4>
                         <ul>
                             {value.linklist.map(linkvalue => {
                                 return (
-                                    <li style={{ color: '#fff', margin: '5px' }}>
+                                    <li key={linkvalue.link} style={{ color: '#fff', margin: '5px' }}>
                                         <a href={linkvalue.link} style={{ color: '#fff' }}>{linkvalue.linktitle}</a>
                                     </li>)
                             })}
