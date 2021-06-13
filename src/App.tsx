@@ -7,7 +7,7 @@ import { Layout } from 'antd';
 import { UserContext } from './context/UserContext'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Settings } from './components/base/Settings'
-import { AllDevice } from './components/device/AllDevice'
+import { AllDevice } from './components/AllDevice'
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -28,10 +28,10 @@ const App: React.FC = () => {
                         <Content>
 
                             <Switch>
-                                <Route path="/alldevice" children={AllDevice}/>
+                                <Route path="/device" children={() => {return <AllDevice /> }} />
                                 {/*<Route path="/mydevice" children={}/> */}
-                                <Route path="/settings" children={Settings} />
-                                <Route exact path="/" children={AllDevice}/>
+                                <Route path="/settings" children={() => {return <Settings /> }} />
+                                {/* <Route exact path="/" children={AllDevice} /> */}
                             </Switch>
                         </Content>
                         <Footer style={{ padding: '0' }}><FooterComponent /></Footer>

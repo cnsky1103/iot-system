@@ -26,7 +26,7 @@ const Navigator = () => {
     <div>
       <button>114514</button>
       <Menu mode="inline" openKeys={openKeys} onOpenChange={onOpenChange} siderCollapsed>
-        <Menu.Item key="m1" icon={<AppstoreOutlined />} onClick={() => { history.push('/alldevice') }}>全部设备</Menu.Item>
+        <Menu.Item key="m1" icon={<AppstoreOutlined />} onClick={() => { history.push('/device') }}>全部设备</Menu.Item>
         <SubMenu key="sub1" icon={<MailOutlined />} title="我的设备">
           <Menu.Item key="1">管理设备</Menu.Item>
           <Menu.Item key="2">查看地图</Menu.Item>
