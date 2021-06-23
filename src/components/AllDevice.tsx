@@ -1,8 +1,9 @@
 import { Badge, Button, Card, Descriptions, Form, Input, Modal } from 'antd'
 import React from 'react'
-import { bindDevice, getAllDevice } from '../api/device'
+import { bindDevice, getAllDevice, getDeviceByUser } from '../api/device'
 import { UserContext } from '../context/UserContext'
 import { Device } from '../types/device'
+import { formDate, formDateTime } from '../utils/date'
 
 interface Props {
 
@@ -11,31 +12,66 @@ interface Props {
 export const AllDevice: React.FC<Props> = () => {
     const [devices, setDevices] = React.useState<Device[]>([])
     const [bindCardVisible, setBindCardVisible] = React.useState<boolean>(false)
+    const [userDevices, setUserDevices] = React.useState<Device[]>([])
+    const userContext = React.useContext(UserContext)
+    const [date, setDate] = React.useState<number>(0)
 
     React.useEffect(() => {
-        getAllDevice().then(setDevices).catch(console.log)
+        setDate(new Date().getTime())
+        getAllDevice().then((res) => { console.log(res); setDevices(res) }).catch(console.log);
+        if (userContext.user.username) {
+            getDeviceByUser({ username: userContext.user.username })
+                .then(setUserDevices)
+                .catch(console.log)
+        }
+
+        const i = setInterval(() => {
+            setDate(new Date().getTime())
+            getAllDevice().then((res) => { console.log(res); setDevices(res) }).catch(console.log);
+            if (userContext.user.username) {
+                getDeviceByUser({ username: userContext.user.username })
+                    .then(setUserDevices)
+                    .catch(console.log)
+            }
+        }, 3000)
+        return () => { clearInterval(i) }
+        // eslint-disable-next-line
     }, [])
 
-    const userContext = React.useContext(UserContext)
+
+    const getDeviceName = (device: Device) => {
+        if (!userContext.user.username) {
+            return device.name
+        }
+
+        const name = userDevices.find(e => e.clientId === device.clientId)?.name
+        console.log(name);
+        return name ? name : device.name
+    }
 
     return (
         <div>
             {
                 devices.map(device => {
                     return (
-                        <div>
-                            <Descriptions title={device.name} key={device.clientId} bordered>
+                        <div key={device.clientId}>
+                            <Descriptions title={getDeviceName(device)} bordered>
                                 <Descriptions.Item label="设备ID">{device.clientId}</Descriptions.Item>
                                 <Descriptions.Item label="经度">{device.lng}</Descriptions.Item>
                                 <Descriptions.Item label="纬度">{device.lat}</Descriptions.Item>
-                                <Descriptions.Item label="上次更新">{device.updatedAt}</Descriptions.Item>
-                                <Descriptions.Item label="Status" span={3}>
-                                    <Badge status="processing" text="Running" />
+                                <Descriptions.Item label="上次更新">{formDate(device.updatedAt)}</Descriptions.Item>
+                                <Descriptions.Item label="Status">
+                                    {(date - formDateTime(device.updatedAt) < 5000) ?
+                                        <Badge status="processing" text="Running" />
+                                        : <Badge status="error" text="停止运行" />}
+                                </Descriptions.Item>
+                                <Descriptions.Item label="操作">
+                                    {userContext.user.username &&
+                                        <Button onClick={(e) => { e.preventDefault(); setBindCardVisible(true) }}>绑定</Button>
+                                    }
                                 </Descriptions.Item>
                             </Descriptions>
-                            {userContext.user.username &&
-                                <Button onClick={(e) => { e.preventDefault(); setBindCardVisible(true) }}>绑定</Button>
-                            }
+
                             <Modal
                                 title="登录"
                                 visible={bindCardVisible}

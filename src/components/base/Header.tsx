@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { LoginButton } from './header/LoginButton'
 import { RegisterButton } from './header/RegisterButton'
-import { ModalContext } from '../context/ModalContext'
-import { UserContext } from '../context/UserContext'
+import { ModalContext } from '../../context/ModalContext'
+import { UserContext } from '../../context/UserContext'
+import { Button } from 'antd'
 
 interface Props {
 
@@ -18,9 +19,11 @@ export const HeaderComponent: React.FC<Props> = () => {
         <div style={{ display: 'flex', justifyContent: 'flex-end', backgroundColor: '#fff' }}>
             <ModalContext.Provider value={{ loginVisible, setLoginVisible, registerVisible, setRegisterVisible, resetVisible, setResetVisible }}>
                 {userContext.user.username ?
-                    <>
-                        <p>{userContext.user.username}</p>
-                    </>
+                    <div>
+                        お帰りなさい! {userContext.user.username}
+                        &nbsp;&nbsp;&nbsp;
+                        <LogoutButton />
+                    </div>
                     :
                     <>
                         <LoginButton />
@@ -29,4 +32,17 @@ export const HeaderComponent: React.FC<Props> = () => {
             </ModalContext.Provider>
         </div>
     );
+}
+
+const LogoutButton: React.FC<{}> = () => {
+    const userContext = React.useContext(UserContext)
+    return (
+        <Button
+            type="primary"
+            onClick={() => {
+                userContext.setUser({ username: undefined })
+            }}>
+            登出
+        </Button>
+    )
 }

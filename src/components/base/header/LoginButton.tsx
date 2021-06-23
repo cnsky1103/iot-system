@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Modal, Button } from 'antd'
 import { LoginCard } from './LoginCard'
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../../context/ModalContext'
 import { ResetCard } from './ResetCard'
 interface Props {
 

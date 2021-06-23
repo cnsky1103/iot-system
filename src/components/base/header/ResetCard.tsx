@@ -1,9 +1,9 @@
 import React from 'react'
 import { Button, Card, Form, Input } from 'antd'
-import { ModalContext } from '../../context/ModalContext';
+import { ModalContext } from '../../../context/ModalContext';
 import { useForm } from 'antd/lib/form/Form';
 import { UserOutlined } from '@ant-design/icons';
-import { resetPassword } from '../../api/account';
+import { resetPassword } from '../../../api/account';
 
 interface Props {
 

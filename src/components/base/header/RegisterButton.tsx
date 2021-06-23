@@ -1,7 +1,7 @@
 import React from 'react'
 import { Modal, Button } from 'antd'
 import { RegisterCard } from './RegisterCard'
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../../context/ModalContext'
 interface Props {
 
 }

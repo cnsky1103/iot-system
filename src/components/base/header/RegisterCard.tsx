@@ -1,7 +1,7 @@
 import React from 'react'
-import { ModalContext } from '../../context/ModalContext'
+import { ModalContext } from '../../../context/ModalContext'
 import { Card, Form, Input, Button } from 'antd'
-import { register } from '../../api/account'
+import { register } from '../../../api/account'
 
 interface Props {
 }

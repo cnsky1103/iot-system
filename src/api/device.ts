@@ -3,7 +3,7 @@ import request from './axios'
 async function getAllDevice(): Promise<any> {
     const devices = await request.get('/device')
 
-    console.log(devices)
+    //console.log(devices)
 
     if (devices.data.code === 0) {
         return Promise.resolve(devices.data.data)
@@ -15,8 +15,6 @@ async function getAllDevice(): Promise<any> {
 async function getDeviceByUser({ username }): Promise<any> {
     const devices = await request.get(`/device/${username}`)
 
-    console.log(devices)
-
     if (devices.data.code === 0) {
         return Promise.resolve(devices.data.data)
     } else {
@@ -24,12 +22,7 @@ async function getDeviceByUser({ username }): Promise<any> {
     }
 }
 
-async function bindDevice({username, clientId, name}):Promise<any> {
-    console.log({
-        username,
-        clientId,
-        name
-    })
+async function bindDevice({ username, clientId, name }): Promise<any> {
     const b = await request.post('/device/bind/', {
         username,
         clientId,
@@ -43,8 +36,34 @@ async function bindDevice({username, clientId, name}):Promise<any> {
     }
 }
 
+async function getAllMessages(): Promise<any> {
+    const messages = await request.get('/device/allmessage')
+
+    //console.log(messages)
+
+    if (messages.data.code === 0) {
+        return Promise.resolve(messages.data.data)
+    } else {
+        return Promise.reject(messages.data.error)
+    }
+}
+
+async function getMessage({ clientId }): Promise<any> {
+    const messages = await request.get(`/device/message/${clientId}`)
+
+    //console.log(messages)
+
+    if (messages.data.code === 0) {
+        return Promise.resolve(messages.data.data)
+    } else {
+        return Promise.reject(messages.data.error)
+    }
+}
+
 export {
     getAllDevice,
     getDeviceByUser,
-    bindDevice
+    bindDevice,
+    getMessage,
+    getAllMessages
 }
