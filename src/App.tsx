@@ -6,7 +6,6 @@ import Navigator from './components/base/Navigator'
 import { Layout } from 'antd';
 import { UserContext } from './context/UserContext'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Settings } from './components/base/Settings'
 import { AllDevice } from './components/AllDevice'
 import { UserDevice } from './components/UserDevice'
 import { DeviceMap } from './components/DeviceMap'
@@ -31,10 +30,10 @@ const App: React.FC = () => {
                         <Content>
 
                             <Switch>
+                                <Route exact path="/" children={() => { return <AllDevice /> }} />
                                 <Route exact path="/device" children={() => { return <AllDevice /> }} />
                                 <Route exact path="/devicestat" children={() => { return <DeviceStat /> }} />
                                 <Route path="/device/:username" children={() => { return <UserDevice /> }} />
-                                <Route path="/settings" children={() => { return <Settings /> }} />
                                 {<Route path="/map/:username" children={() => { return <DeviceMap /> }} />}
                             </Switch>
                         </Content>

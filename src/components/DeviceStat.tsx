@@ -142,6 +142,7 @@ export const DeviceStat: React.FC<Props> = () => {
                 setLoading(false)
             }).catch(console.log)
         }).catch(console.log);
+        // eslint-disable-next-line
     }, [])
 
     React.useEffect(() => {

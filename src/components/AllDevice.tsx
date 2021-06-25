@@ -1,4 +1,4 @@
-import { Badge, Button, Card, Descriptions, Form, Input, Modal } from 'antd'
+import { Badge, Button, Card, Descriptions, Form, Input, List, Modal } from 'antd'
 import React from 'react'
 import { bindDevice, getAllDevice, getDeviceByUser } from '../api/device'
 import { UserContext } from '../context/UserContext'
@@ -51,8 +51,10 @@ export const AllDevice: React.FC<Props> = () => {
 
     return (
         <div>
-            {
-                devices.map(device => {
+            <List
+                itemLayout="horizontal"
+                dataSource={devices}
+                renderItem={device => {
                     return (
                         <div key={device.clientId}>
                             <Descriptions title={getDeviceName(device)} bordered>
@@ -83,8 +85,8 @@ export const AllDevice: React.FC<Props> = () => {
                             </Modal >
                         </div>
                     )
-                })
-            }
+                }}
+            />
         </div>
     );
 }
