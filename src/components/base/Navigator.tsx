@@ -42,7 +42,7 @@ const Navigator = () => {
               : alert("请先登录！")
           }}>查看地图</Menu.Item>
         </SubMenu>
-        <Menu.Item key="m3" icon={<SettingOutlined />} onClick={() => { history.push('/settings') }}>设置</Menu.Item>
+        {/* <Menu.Item key="m3" icon={<SettingOutlined />} onClick={() => { history.push('/settings') }}>设置</Menu.Item> */}
       </Menu>
     </div>
   );
