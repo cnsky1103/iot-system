@@ -56,5 +56,5 @@
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
   },
-  "homepage": "http://cnsky1103.github.io/iot-system"	 
+  "homepage": "."	 
 }
