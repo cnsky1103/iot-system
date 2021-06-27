@@ -5,7 +5,7 @@ import { FooterComponent } from './components/base/Footer'
 import Navigator from './components/base/Navigator'
 import { Layout } from 'antd';
 import { UserContext } from './context/UserContext'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 import { AllDevice } from './components/AllDevice'
 import { UserDevice } from './components/UserDevice'
 import { DeviceMap } from './components/DeviceMap'
