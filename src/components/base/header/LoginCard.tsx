@@ -1,5 +1,5 @@
 import React from 'react'
-import { Card, Form, Input, Button, Checkbox, Tag } from 'antd';
+import { Card, Form, Input, Button, Tag } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
 import { ModalContext } from '../../../context/ModalContext';
 import { login } from '../../../api/account'
