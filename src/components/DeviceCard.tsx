@@ -33,7 +33,7 @@ export const DeviceCard: React.FC<Props> = ({ device }) => {
     }, [])
     return (
         <div>
-            <Card title={device.name} extra={<Button type='primary' onClick={() => { setVisible(true) }}>管理</Button>}>
+            <Card title={device.name}>
                 <List
                     itemLayout="horizontal"
                     dataSource={messages}
