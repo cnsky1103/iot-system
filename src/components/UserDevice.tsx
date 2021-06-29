@@ -20,6 +20,7 @@ export const UserDevice: React.FC<Props> = () => {
                 setDevices(res);
                 setLoading(false)
             })
+            .catch(alert)
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [userContext.user.username])
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Menu } from 'antd';
-import { AppstoreOutlined, MailOutlined, SettingOutlined } from '@ant-design/icons';
+import { AppstoreOutlined, MailOutlined } from '@ant-design/icons';
 import { useHistory } from 'react-router-dom'
 import { UserContext } from '../../context/UserContext';
 

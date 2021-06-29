@@ -7,8 +7,10 @@ async function login({ username, password, remember }): Promise<any> {
         password: md5(password)
     })
     //console.log(loginRes.data.code)
-    if (loginRes.data.code === 0)
+    if (loginRes.data.code === 0) {
+        localStorage.setItem("token", loginRes.data.data)
         return Promise.resolve(loginRes.data.data)
+    }
     else
         return Promise.reject(loginRes.data.error)
 }

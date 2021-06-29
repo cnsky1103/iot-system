@@ -15,13 +15,9 @@ export const LoginCard: React.FC<Props> = () => {
         console.log({ ...values });
         login(values)
             .then(res => {
-                console.log(res[0]);
-                if (res[0]) {
-                    userContext.setUser({ username: res[0].username });
-                    modalContext.setLoginVisible(false)
-                }
-                else
-                    alert("用户名或密码错误！！")
+                console.log(res);
+                userContext.setUser({ username: values.username });
+                modalContext.setLoginVisible(false);
             })
             .catch(alert);
     };
@@ -52,7 +48,7 @@ export const LoginCard: React.FC<Props> = () => {
                         placeholder="密码"
                     />
                 </Form.Item>
-                <Form.Item>
+                {/* <Form.Item>
                     <div style={{ display: 'flex' }}>
                         <Form.Item name="remember" valuePropName="checked" noStyle>
                             <Checkbox>记住我</Checkbox>
@@ -65,7 +61,7 @@ export const LoginCard: React.FC<Props> = () => {
                             忘记密码？
                         </Tag.CheckableTag>
                     </div>
-                </Form.Item>
+                </Form.Item> */}
 
 
                 <Form.Item>

@@ -22,7 +22,7 @@ export const AllDevice: React.FC<Props> = () => {
         if (userContext.user.username) {
             getDeviceByUser({ username: userContext.user.username })
                 .then(setUserDevices)
-                .catch(console.log)
+                .catch(alert)
         }
 
         const i = setInterval(() => {
@@ -31,7 +31,7 @@ export const AllDevice: React.FC<Props> = () => {
             if (userContext.user.username) {
                 getDeviceByUser({ username: userContext.user.username })
                     .then(setUserDevices)
-                    .catch(console.log)
+                    .catch(alert)
             }
         }, 3000)
         return () => { clearInterval(i) }
@@ -45,7 +45,6 @@ export const AllDevice: React.FC<Props> = () => {
         }
 
         const name = userDevices.find(e => e.clientId === device.clientId)?.name
-        console.log(name);
         return name ? name : device.name
     }
 

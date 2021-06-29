@@ -13,7 +13,11 @@ async function getAllDevice(): Promise<any> {
 }
 
 async function getDeviceByUser({ username }): Promise<any> {
-    const devices = await request.get(`/device/${username}`)
+    const devices = await request.get(`/device/${username}`, {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
+    })
 
     if (devices.data.code === 0) {
         return Promise.resolve(devices.data.data)
@@ -27,6 +31,10 @@ async function bindDevice({ username, clientId, name }): Promise<any> {
         username,
         clientId,
         name
+    }, {
+        headers: {
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        }
     })
 
     if (b.data.code === 0) {
@@ -50,8 +58,6 @@ async function getAllMessages(): Promise<any> {
 
 async function getMessage({ clientId }): Promise<any> {
     const messages = await request.get(`/device/message/${clientId}`)
-
-    //console.log(messages)
 
     if (messages.data.code === 0) {
         return Promise.resolve(messages.data.data)
